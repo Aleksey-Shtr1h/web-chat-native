@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "340398160492",
+    "firebase_url": "https://web-chat-1b38f.firebaseio.com",
+    "project_id": "web-chat-1b38f",
+    "storage_bucket": "web-chat-1b38f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:340398160492:android:9cb34766622bf925787649",
+        "android_client_info": {
+          "package_name": "com.appwebchatnative"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "340398160492-olbl8s6c51q202u867a07khef4i1ofpm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAfMHFXFKlmRfupWOZrZfuLzpahxeDahw4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "340398160492-olbl8s6c51q202u867a07khef4i1ofpm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
