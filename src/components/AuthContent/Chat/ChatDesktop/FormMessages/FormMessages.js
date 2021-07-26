@@ -5,14 +5,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { OperationData } from "../../../../../redux/data/dataReducer";
 import { getSelectRoom } from "../../../../../redux/data/dataSelector";
 import { getUserProfile } from "../../../../../redux/user/usersSelector";
+import { InputBtnClear } from "../../../../Solid/InputBtnClear/InputBtnClear";
 import {
   Ant_FormMessageWrap,
   Ant_FormMessageInput,
   Ant_FormMessageBtn,
   Ant_FormMessageBtnIcon,
+  Ant_FormMessageInputWrap,
 } from "./FormMessages.styled";
-
-import { ReactComponent as IconSend } from "../../../../../assets/images/send-btn.svg";
 
 export const FormMessages = () => {
   const dispatch = useDispatch();
@@ -31,6 +31,10 @@ export const FormMessages = () => {
     setInputValue(text);
   };
 
+  const onClearTextPress = () => {
+    setInputValue(``);
+  };
+
   const onSubmitPressMassage = () => {
     if (!validText) {
       return;
@@ -44,20 +48,23 @@ export const FormMessages = () => {
 
   return (
     <Ant_FormMessageWrap>
-      <Text
-        className="form-messages__text"
-        htmlFor="messages-text"
-        area-label="messages-text"
-      ></Text>
-      <Ant_FormMessageInput
-        underlineColorAndroid="transparent"
-        placeholder="Your message"
-        placeholderTextColor="grey"
-        numberOfLines={2}
-        multiline={true}
-        value={inputValue}
-        onChangeText={onChangeTextMassage}
-      />
+      <Ant_FormMessageInputWrap>
+        <Ant_FormMessageInput
+          underlineColorAndroid="transparent"
+          placeholder="Your message"
+          placeholderTextColor="grey"
+          numberOfLines={2}
+          multiline={true}
+          value={inputValue}
+          onChangeText={onChangeTextMassage}
+        />
+        <InputBtnClear
+          onClearTextPress={onClearTextPress}
+          setState={setInputValue}
+          validValue={validText}
+        />
+      </Ant_FormMessageInputWrap>
+
       <Ant_FormMessageBtn onPress={onSubmitPressMassage}>
         <Ant_FormMessageBtnIcon
           source={require("../../../../../assets/images/send.png")}

@@ -1,6 +1,8 @@
 // import {firebase} from '../../utils/firebase.js';
+import { utils } from "@react-native-firebase/app";
 import database from "@react-native-firebase/database";
 import firestore from "@react-native-firebase/firestore";
+import storage from "@react-native-firebase/storage";
 import { nanoid } from "nanoid";
 
 import { ActionCreatorData, ActionTypeData } from "./dataAction.js";
@@ -85,6 +87,10 @@ export const OperationData = {
 
     await dispatch(ActionCreatorApp.toglleModalAddChannel(false));
     addRoomFirebaseUsers(database, usersRoom, idRoom, nameRoom);
+
+    dispatch(ActionCreatorApp.changeSubribedUser(false));
+    dispatch(OperationData.loadChannel(idRoom));
+    dispatch(OperationData.loadComment(idRoom, true));
   },
 
   ///////////////////////////////////////////
@@ -158,17 +164,23 @@ export const OperationData = {
       typeof postEditInfo.photoUrl === "object" &&
       postEditInfo.photoUrl !== null
     ) {
-      const storageRef = firebase.storage().ref();
-      const fileRef = storageRef.child(
-        `images/${userAuthId}/logo-${userAuthId}.svg`
+      const storageRef = storage().ref(
+        `images/${userAuthId}/logo-${userAuthId}.png`
       );
-      await fileRef.put(postEditInfo.photoUrl);
-      let filePhotoUrl = await fileRef.getDownloadURL();
-      postEditInfo.photoUrl = filePhotoUrl;
+      const pathToFile = `${utils.FilePath.PICTURES_DIRECTORY}/${postEditInfo.photoUrl.uri}`;
+      console.log(postEditInfo);
+      console.log(utils.FilePath);
+      await storageRef.putFile(pathToFile);
+
+      // const fileRef = storageRef.child(`images/qwert/logo-qwerty.png`);
+
+      // await fileRef.put(postEditInfo.photoUrl);
+      // let filePhotoUrl = await fileRef.getDownloadURL();
+      // postEditInfo.photoUrl = filePhotoUrl;
     }
 
-    const db = database().ref(`/users/${userAuthId}`);
-    await db.update(postEditInfo);
+    // const db = database().ref(`/users/${userAuthId}`);
+    // await db.update(postEditInfo);
   },
 };
 

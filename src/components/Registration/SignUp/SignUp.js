@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+
 import { OperationUser } from "../../../redux/user/userReducer";
+
+import { InputBtnClear } from "../../Solid/InputBtnClear/InputBtnClear";
+import { MainBtnForm } from "./../../Solid/MainBtnForm/MainBtnForm";
+
 import {
   Ant_SectionForm,
   Ant_FormMain,
   Ant_FormMainLabel,
   Ant_FormMainInput,
-  Ant_BtnMainForm,
-} from "../FormMain.styled";
+  Ant_FormMainInputWrap,
+} from "../../../globalStyled/FormMain.styled";
 
 export const SignUp = () => {
   const [name, setName] = useState(``);
@@ -18,23 +23,15 @@ export const SignUp = () => {
 
   const validPassword =
     password !== `` ? (password === confirmPassword ? true : false) : false;
-  const validEmail = email !== `` ? true : false;
   const validName = name !== `` ? true : false;
+  const validEmail = email !== `` ? true : false;
 
-  const onChangeName = (text) => {
-    setName(text);
+  const onChangeText = (text, setSate) => {
+    setSate(text);
   };
 
-  const onChangeEmail = (text) => {
-    setEmail(text);
-  };
-
-  const onChangePassword = (text) => {
-    setPassword(text);
-  };
-
-  const onChangeConfirmPassword = (text) => {
-    setConfirmPassword(text);
+  const onClearTextPress = (setState) => {
+    setState(``);
   };
 
   const onSubmitSignUp = () => {
@@ -49,36 +46,54 @@ export const SignUp = () => {
     <Ant_SectionForm>
       <Ant_FormMain>
         <Ant_FormMainLabel>Name</Ant_FormMainLabel>
-        <Ant_FormMainInput
-          keyboardType="email-address"
-          placeholder="email@gmail.com"
-          value={name}
-          onChangeText={onChangeName}
-        />
+        <Ant_FormMainInputWrap>
+          <Ant_FormMainInput
+            keyboardType="email-address"
+            placeholder="email@gmail.com"
+            value={name}
+            onChangeText={(text) => onChangeText(text, setName)}
+          />
+          <InputBtnClear
+            onClearTextPress={onClearTextPress}
+            setState={setName}
+            validValue={validName}
+          />
+        </Ant_FormMainInputWrap>
         <Ant_FormMainLabel>Email</Ant_FormMainLabel>
-        <Ant_FormMainInput
-          keyboardType="email-address"
-          placeholder="email@gmail.com"
-          value={email}
-          onChangeText={onChangeEmail}
-        />
+        <Ant_FormMainInputWrap>
+          <Ant_FormMainInput
+            keyboardType="email-address"
+            placeholder="email@gmail.com"
+            value={email}
+            onChangeText={(text) => onChangeText(text, setEmail)}
+          />
+          <InputBtnClear
+            onClearTextPress={onClearTextPress}
+            setState={setEmail}
+            validValue={validEmail}
+          />
+        </Ant_FormMainInputWrap>
         <Ant_FormMainLabel>Password</Ant_FormMainLabel>
-        <Ant_FormMainInput
-          keyboardType="default"
-          secureTextEntry={true}
-          placeholder="*********"
-          value={password}
-          onChangeText={onChangePassword}
-        />
+        <Ant_FormMainInputWrap>
+          <Ant_FormMainInput
+            keyboardType="default"
+            secureTextEntry={true}
+            placeholder="*********"
+            value={password}
+            onChangeText={(text) => onChangeText(text, setPassword)}
+          />
+        </Ant_FormMainInputWrap>
         <Ant_FormMainLabel>Confirm Password</Ant_FormMainLabel>
-        <Ant_FormMainInput
-          keyboardType="default"
-          secureTextEntry={true}
-          placeholder="*********"
-          value={confirmPassword}
-          onChangeText={onChangeConfirmPassword}
-        />
-        <Ant_BtnMainForm title="Sign Up" onPress={onSubmitSignUp} />
+        <Ant_FormMainInputWrap>
+          <Ant_FormMainInput
+            keyboardType="default"
+            secureTextEntry={true}
+            placeholder="*********"
+            value={confirmPassword}
+            onChangeText={(text) => onChangeText(text, setConfirmPassword)}
+          />
+        </Ant_FormMainInputWrap>
+        <MainBtnForm nameBtn={"Sign Up"} onPressCommand={onSubmitSignUp} />
       </Ant_FormMain>
     </Ant_SectionForm>
   );

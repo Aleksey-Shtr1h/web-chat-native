@@ -1,44 +1,28 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { ActionCreatorApp } from "../../../../redux/app/appAction";
+import { useNavigation } from "@react-navigation/native";
 
 import { OperationData } from "../../../../redux/data/dataReducer";
 import { getUserProfile } from "../../../../redux/user/usersSelector";
-import { getStateModalAddChannel } from "../../../../redux/app/appSelector";
 
-import {
-  FormMain,
-  WrapperFormMain,
-  FormMainList,
-  FormMainItem,
-  FormMainLabel,
-  FormMainInput,
-  ModalSection,
-  ModalWrapper,
-  BtnWrapper,
-  BtnForm,
-} from "../../../../globalStyled/form.styled";
-import { GlobalState } from "../../../../redux/typeState";
-import { useState } from "react";
+import { InputBtnClear } from "../../../Solid/InputBtnClear/InputBtnClear";
+import { MainBtnForm } from "./../../../Solid/MainBtnForm/MainBtnForm";
 
 import {
   Ant_SectionForm,
   Ant_FormMain,
   Ant_FormMainLabel,
   Ant_FormMainInput,
-  Ant_BtnMainForm,
-} from "./../../../Registration/FormMain.styled";
+  Ant_FormMainInputWrap,
+} from "../../../../globalStyled/FormMain.styled";
 
-import { Ant_BtnAddRoomForm, Ant_BtnWrap } from "./CreateRoom.styled";
-import { Button } from "react-native";
+import { Ant_FlexRowWrap } from "../../../../globalStyled/Global.styled";
 
 export const CreateRoom = () => {
+  const navigation = useNavigation();
   const dispatch = useDispatch();
 
   const userProfile = useSelector((state) => getUserProfile(state));
-  // const isModalAddChannel = useSelector((state) =>
-  //   getStateModalAddChannel(state)
-  // );
 
   const [nameRoom, setNameRoom] = useState(``);
   const [toggleButtonSubmit, setToggleButtonSubmit] = useState(false);
@@ -55,9 +39,12 @@ export const CreateRoom = () => {
     setNameRoom(text);
   };
 
+  const onClearTextPress = () => {
+    setNameRoom(``);
+  };
+
   const onCreateRoomSubmit = () => {
     if (!validNameRoom) {
-      console.log("111");
       return;
     }
     dispatch(
@@ -67,24 +54,35 @@ export const CreateRoom = () => {
         [userProfile.userId]
       )
     );
+    navigation.navigate("ChannelBox", { name: nameRoom });
+  };
+
+  const onCancelPress = () => {
+    navigation.navigate("ListRoom");
   };
 
   return (
     <Ant_SectionForm>
       <Ant_FormMain>
         <Ant_FormMainLabel>Enter name room</Ant_FormMainLabel>
-        <Ant_FormMainInput
-          type="text"
-          id="room-text"
-          placeholder="name room"
-          value={nameRoom}
-          onChangeText={onChangeTextNewRoom}
-        />
-
-        <Ant_BtnWrap>
-          <Ant_BtnMainForm title="Add room" onPress={onCreateRoomSubmit} />
-          {/* <Ant_BtnMainForm title="Clear" /> */}
-        </Ant_BtnWrap>
+        <Ant_FormMainInputWrap>
+          <Ant_FormMainInput
+            type="text"
+            id="room-text"
+            placeholder="name room"
+            value={nameRoom}
+            onChangeText={onChangeTextNewRoom}
+          />
+          <InputBtnClear
+            onClearTextPress={onClearTextPress}
+            setState={setNameRoom}
+            validValue={validNameRoom}
+          />
+        </Ant_FormMainInputWrap>
+        <Ant_FlexRowWrap>
+          <MainBtnForm nameBtn={"Create"} onPressCommand={onCreateRoomSubmit} />
+          <MainBtnForm nameBtn={"Cancel"} onPressCommand={onCancelPress} />
+        </Ant_FlexRowWrap>
       </Ant_FormMain>
     </Ant_SectionForm>
   );

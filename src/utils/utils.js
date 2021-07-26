@@ -81,3 +81,23 @@ export const getShotTitleRoom = (titleText, maxLength) => {
 
   return titleText;
 };
+
+export const onPressEvents = {
+  onChangeText: (text, setState) => {
+    setState(text);
+  },
+
+  onValidStateValue: (stateValue) => {
+    return stateValue !== `` ? true : false;
+  },
+
+  onClearTextPress: (setState) => {
+    setState(``);
+  },
+
+  onChangeFileName: (file) => {
+    const result = file ? file?.assets[0]?.uri : ``;
+    if (result !== ``) return result.split("").slice(0, 30).join("") + "...";
+    return result;
+  },
+};

@@ -6,8 +6,11 @@ import {
   Ant_FormMain,
   Ant_FormMainLabel,
   Ant_FormMainInput,
-  Ant_BtnMainForm,
-} from "../FormMain.styled";
+  Ant_FormMainInputWrap,
+} from "../../../globalStyled/FormMain.styled";
+
+import { InputBtnClear } from "../../Solid/InputBtnClear/InputBtnClear";
+import { MainBtnForm } from "./../../Solid/MainBtnForm/MainBtnForm";
 
 export const SignIn = () => {
   const [email, setEmail] = useState(``);
@@ -17,12 +20,12 @@ export const SignIn = () => {
   const validEmail = email !== `` ? true : false;
   const validPassword = password !== `` ? true : false;
 
-  const onChangeEmail = (text) => {
-    setEmail(text);
+  const onChangeText = (text, setState) => {
+    setState(text);
   };
 
-  const onChangePassword = (text) => {
-    setPassword(text);
+  const onClearTextPress = (setState) => {
+    setState(``);
   };
 
   const onSubmitSignIn = () => {
@@ -37,21 +40,38 @@ export const SignIn = () => {
     <Ant_SectionForm>
       <Ant_FormMain>
         <Ant_FormMainLabel>Email</Ant_FormMainLabel>
-        <Ant_FormMainInput
-          keyboardType="email-address"
-          placeholder="email@gmail.com"
-          value={email}
-          onChangeText={onChangeEmail}
-        />
+
+        <Ant_FormMainInputWrap>
+          <Ant_FormMainInput
+            keyboardType="email-address"
+            placeholder="email@gmail.com"
+            value={email}
+            onChangeText={(text) => onChangeText(text, setEmail)}
+          />
+          <InputBtnClear
+            onClearTextPress={onClearTextPress}
+            setState={setEmail}
+            validValue={validEmail}
+          />
+        </Ant_FormMainInputWrap>
+
         <Ant_FormMainLabel>Password</Ant_FormMainLabel>
-        <Ant_FormMainInput
-          keyboardType="default"
-          secureTextEntry={true}
-          placeholder="*********"
-          value={password}
-          onChangeText={onChangePassword}
-        />
-        <Ant_BtnMainForm title="Sign In" onPress={onSubmitSignIn} />
+        <Ant_FormMainInputWrap>
+          <Ant_FormMainInput
+            keyboardType="default"
+            secureTextEntry={true}
+            placeholder="*********"
+            value={password}
+            onChangeText={(text) => onChangeText(text, setPassword)}
+          />
+          <InputBtnClear
+            onClearTextPress={onClearTextPress}
+            setState={setPassword}
+            validValue={validPassword}
+          />
+        </Ant_FormMainInputWrap>
+
+        <MainBtnForm nameBtn={"Sign In"} onPressCommand={onSubmitSignIn} />
       </Ant_FormMain>
     </Ant_SectionForm>
   );

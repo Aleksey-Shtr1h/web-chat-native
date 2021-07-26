@@ -4,7 +4,7 @@ import { View, Image } from "react-native";
 import { OperationData } from "../../../../redux/data/dataReducer";
 
 import { Ant_SubscribeButtonWrap } from "./SubscribeButton.styled";
-import { Ant_BtnMainForm } from "./../../../Registration/FormMain.styled";
+import { Ant_BtnMainForm } from "./../../../../globalStyled/FormMain.styled";
 
 export const SubscribeButton = ({ selectRoom, userProfile }) => {
   const dispatch = useDispatch();

@@ -13,7 +13,7 @@ export const MONTH_NAMES = [
   `December`,
 ];
 
-export const USER_UNKNOWN_PHOTO_URL = `https://firebasestorage.googleapis.com/v0/b/web-chat-1b38f.appspot.com/o/images%2Fuser-unknown-logo%2Fuser-unknown-logo.svg?alt=media&token=c1ddaf10-5e6c-499a-9d51-43892834d130`;
+export const USER_UNKNOWN_PHOTO_URL = `https://firebasestorage.googleapis.com/v0/b/web-chat-1b38f.appspot.com/o/images%2Fuser-unknown-logo%2Funknown.png?alt=media&token=7599a865-4421-4fbe-88a7-829e79d3d0a1`;
 
 export const ScrollToChatList = {
   MIN: 0,

@@ -1,5 +1,5 @@
 import styled from "styled-components/native";
-import { Ant_BtnMainForm } from "./../../../Registration/FormMain.styled";
+import { Ant_BtnMainForm } from "../../../../globalStyled/FormMain.styled";
 
 export const Ant_BtnWrap = styled.View`
   display: flex;
