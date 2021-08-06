@@ -1,14 +1,15 @@
 import React from "react";
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import { AuthConent } from "./../../components/AuthContent/AuthConent";
-import { CreateRoom } from "../../components/AuthContent/DrawerMenu/CreateRoom/CreateRoom";
-import { ExitUserProfile } from "./../../components/AuthContent/DrawerMenu/ExitUserProfile/ExitUserProfile";
 import { useSelector } from "react-redux";
 import { getStateUserOnline } from "../../redux/user/usersSelector";
-import { SignIn } from "./../../components/Registration/SignIn/SignIn";
-import { SignUp } from "./../../components/Registration/SignUp/SignUp";
-import { BottonTabSettingsUserStack } from "./../BottonTabSettingsUserStack/BottonTabSettingsUserStack";
-import { SettingsUser } from "./../../components/AuthContent/DrawerMenu/SettingsUser/SettingsUser";
+import {
+  StackCreateRoomScreen,
+  StackExitProfileScreen,
+  StackListRoomScreen,
+  StackSettingsScreen,
+  StackSignInProfileScreen,
+  StackSignUpProfileScreen,
+} from "./../StackScreen/StackSideBarScreen/StackSideBarScreen";
 
 const DrawerSideBarStack = createDrawerNavigator();
 
@@ -21,31 +22,37 @@ export const DrawerSideBarStackScreen = ({ navigation }) => {
         <>
           <DrawerSideBarStack.Screen
             name="ListRoom"
-            component={AuthConent}
+            component={StackListRoomScreen}
             options={{ title: "Список чатов" }}
           />
+
           <DrawerSideBarStack.Screen
             name="CreateRoom"
-            component={CreateRoom}
+            component={StackCreateRoomScreen}
             options={{ title: "Создать чат" }}
           />
           <DrawerSideBarStack.Screen
             name="Settings"
-            component={SettingsUser}
+            component={StackSettingsScreen}
             options={{ title: "Настройки" }}
           />
           <DrawerSideBarStack.Screen
             name="ExitProfile"
-            component={ExitUserProfile}
+            component={StackExitProfileScreen}
             options={{ title: "Выйти" }}
           />
         </>
       ) : (
         <>
-          <DrawerSideBarStack.Screen name="Войти" component={SignIn} />
           <DrawerSideBarStack.Screen
-            name="Создать пользователя"
-            component={SignUp}
+            name="SignIn"
+            component={StackSignInProfileScreen}
+            options={{ title: "Войти" }}
+          />
+          <DrawerSideBarStack.Screen
+            name="SignUp"
+            component={StackSignUpProfileScreen}
+            options={{ title: "Создать пользователя" }}
           />
         </>
       )}

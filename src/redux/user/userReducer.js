@@ -54,10 +54,10 @@ export const OperationUser = {
       });
   },
 
-  userAuth: (email, password) => (dispatch) => {
+  userAuth: (email, password) => async (dispatch) => {
     dispatch(ActionCreatorUser.getStateOnlineUser(null));
 
-    auth()
+    return await auth()
       .signInWithEmailAndPassword(email, password)
       .then(() => {
         checkOnlineFirebase();

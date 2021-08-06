@@ -91,13 +91,30 @@ export const onPressEvents = {
     return stateValue !== `` ? true : false;
   },
 
+  onValidConfirmStateValue: (stateValue, stateConfirmValue) => {
+    return stateValue !== ``
+      ? stateValue === stateConfirmValue
+        ? true
+        : false
+      : false;
+  },
+
   onClearTextPress: (setState) => {
     setState(``);
   },
 
   onChangeFileName: (file) => {
-    const result = file ? file?.assets[0]?.uri : ``;
+    const result = file ? file : ``;
     if (result !== ``) return result.split("").slice(0, 30).join("") + "...";
     return result;
+  },
+};
+
+export const onInputFocusStyle = {
+  onFocus: (width, color) => {
+    return { borderWidth: width, borderColor: color };
+  },
+  onBlur: (width, color) => {
+    return { borderWidth: width, borderColor: color };
   },
 };

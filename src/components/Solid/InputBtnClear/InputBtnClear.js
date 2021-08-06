@@ -4,10 +4,14 @@ import {
   Ant_BtnInputClearWrap,
 } from "../../../globalStyled/FormMain.styled";
 
-export const InputBtnClear = ({ onClearTextPress, setState, validValue }) => {
+export const InputBtnClear = ({
+  onClearTextPress,
+  setState,
+  onValidStateValue,
+}) => {
   return (
     <>
-      {validValue && (
+      {onValidStateValue && (
         <Ant_BtnInputClearWrap onPress={() => onClearTextPress(setState)}>
           <Ant_BtnInputClearImage
             source={require("../../../assets/images/close-btn.png")}

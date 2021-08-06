@@ -4,74 +4,70 @@ import { OperationUser } from "../../../redux/user/userReducer";
 import {
   Ant_SectionForm,
   Ant_FormMain,
-  Ant_FormMainLabel,
-  Ant_FormMainInput,
-  Ant_FormMainInputWrap,
 } from "../../../globalStyled/FormMain.styled";
 
-import { InputBtnClear } from "../../Solid/InputBtnClear/InputBtnClear";
 import { MainBtnForm } from "./../../Solid/MainBtnForm/MainBtnForm";
+import { InputMain } from "./../../Solid/InputMain/InputMain";
+import { onPressEvents } from "./../../../utils/utils";
+import { Ant_FlexRowWrap } from "../../../globalStyled/Global.styled";
 
 export const SignIn = () => {
-  const [email, setEmail] = useState(``);
-  const [password, setPassword] = useState(``);
+  const [email, setEmail] = useState(`4@mail.ru`);
+  const [password, setPassword] = useState(`123456`);
+  const [isDisabled, setIsDisabled] = useState(false);
   const dispatch = useDispatch();
 
-  const validEmail = email !== `` ? true : false;
-  const validPassword = password !== `` ? true : false;
+  const { onChangeText, onValidStateValue, onClearTextPress } = onPressEvents;
 
-  const onChangeText = (text, setState) => {
-    setState(text);
-  };
-
-  const onClearTextPress = (setState) => {
-    setState(``);
-  };
-
-  const onSubmitSignIn = () => {
-    if (!validPassword || !validEmail) {
+  const onSubmitSignIn = async () => {
+    if (!onValidStateValue(email) || !onValidStateValue(password)) {
+      setIsDisabled(false);
       return;
     }
+    setIsDisabled(true);
 
-    dispatch(OperationUser.userAuth(email, password));
+    await new Promise((resolve, reject) => {
+      resolve(dispatch(OperationUser.userAuth(email, password)));
+      reject(setIsDisabled(false));
+    });
   };
 
   return (
     <Ant_SectionForm>
       <Ant_FormMain>
-        <Ant_FormMainLabel>Email</Ant_FormMainLabel>
+        <InputMain
+          labelName={"Email"}
+          keyboardType={"email-address"}
+          placeholder={"email@gmail.com"}
+          stateValue={email}
+          setStateValue={setEmail}
+          secureTextEntry={false}
+          editable={true}
+          btnRigth={"clear"}
+          onChangeText={onChangeText}
+          onBtnPress={onClearTextPress}
+          onValidStateValue={onValidStateValue}
+        />
 
-        <Ant_FormMainInputWrap>
-          <Ant_FormMainInput
-            keyboardType="email-address"
-            placeholder="email@gmail.com"
-            value={email}
-            onChangeText={(text) => onChangeText(text, setEmail)}
-          />
-          <InputBtnClear
-            onClearTextPress={onClearTextPress}
-            setState={setEmail}
-            validValue={validEmail}
-          />
-        </Ant_FormMainInputWrap>
+        <InputMain
+          labelName={"Password"}
+          keyboardType={"default"}
+          placeholder={"*********"}
+          stateValue={password}
+          setStateValue={setPassword}
+          secureTextEntry={true}
+          editable={true}
+          btnRigth={"clear"}
+          onChangeText={onChangeText}
+          onBtnPress={onClearTextPress}
+          onValidStateValue={onValidStateValue}
+        />
 
-        <Ant_FormMainLabel>Password</Ant_FormMainLabel>
-        <Ant_FormMainInputWrap>
-          <Ant_FormMainInput
-            keyboardType="default"
-            secureTextEntry={true}
-            placeholder="*********"
-            value={password}
-            onChangeText={(text) => onChangeText(text, setPassword)}
-          />
-          <InputBtnClear
-            onClearTextPress={onClearTextPress}
-            setState={setPassword}
-            validValue={validPassword}
-          />
-        </Ant_FormMainInputWrap>
-
-        <MainBtnForm nameBtn={"Sign In"} onPressCommand={onSubmitSignIn} />
+        <MainBtnForm
+          nameBtn={"Sign In"}
+          onPressCommand={onSubmitSignIn}
+          isDisabled={isDisabled}
+        />
       </Ant_FormMain>
     </Ant_SectionForm>
   );
