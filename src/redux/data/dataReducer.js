@@ -160,27 +160,19 @@ export const OperationData = {
   ///////////////////////////////////////////
 
   changeUserDateInfo: (userAuthId, postEditInfo) => async (dispatch) => {
-    if (
-      typeof postEditInfo.photoUrl === "object" &&
-      postEditInfo.photoUrl !== null
-    ) {
-      const storageRef = storage().ref(
-        `images/${userAuthId}/logo-${userAuthId}.png`
+    if (postEditInfo?.photoUrl?.isPath) {
+      let photoUrl = postEditInfo?.photoUrl?.path;
+      const storageRef = storage().ref();
+      const fileRef = storageRef.child(
+        `images/${userAuthId}/logo-${userAuthId}`
       );
-      const pathToFile = `${utils.FilePath.PICTURES_DIRECTORY}/${postEditInfo.photoUrl.uri}`;
-      console.log(postEditInfo);
-      console.log(utils.FilePath);
-      await storageRef.putFile(pathToFile);
-
-      // const fileRef = storageRef.child(`images/qwert/logo-qwerty.png`);
-
-      // await fileRef.put(postEditInfo.photoUrl);
-      // let filePhotoUrl = await fileRef.getDownloadURL();
-      // postEditInfo.photoUrl = filePhotoUrl;
+      await fileRef.putFile(photoUrl);
+      const filePhotoUrl = await fileRef.getDownloadURL();
+      postEditInfo.photoUrl.path = filePhotoUrl;
     }
 
-    // const db = database().ref(`/users/${userAuthId}`);
-    // await db.update(postEditInfo);
+    const db = database().ref(`/users/${userAuthId}`);
+    await db.update(postEditInfo);
   },
 };
 

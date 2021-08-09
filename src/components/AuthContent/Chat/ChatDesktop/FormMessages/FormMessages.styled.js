@@ -18,15 +18,18 @@ export const Ant_FormMessageWrap = styled.View`
 export const Ant_FormMessageInputWrap = styled(Ant_FormMainInputWrap)`
   flex: 0 1 80%;
 
-  padding: 0;
   border: none;
+
+  margin-left: 1%;
+  padding-right: 1%;
 `;
 
 export const Ant_FormMessageInput = styled(Ant_FormMainInput)`
+  width: 100%;
   padding: 1% 1%;
-  margin: 0 9% 0 0;
 
   background-color: #f4f5f4;
+  border-radius: 5px;
 
   font-size: 15px;
   line-height: 15px;

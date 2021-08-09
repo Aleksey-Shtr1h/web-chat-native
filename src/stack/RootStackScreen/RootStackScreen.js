@@ -15,36 +15,17 @@ const RootStack = createStackNavigator();
 export const RootStackScreen = () => {
   const isOnline = useSelector((state) => getStateUserOnline(state));
 
-  const navName = isOnline ? "AuthConent" : "SignIn";
-
   return (
-    <RootStack.Navigator initialRouteName={navName}>
+    <RootStack.Navigator headerMode="none">
       {isOnline ? (
-        <>
-          <RootStack.Screen
-            name="Messenger"
-            component={DrawerSideBarStackScreen}
-            options={{
-              headerLeft: () => <BurgerBtn />,
-            }}
-          />
-          <RootStack.Screen
-            name="ChannelBox"
-            component={ChannelBox}
-            options={({ route }) => ({ title: route.params.name })}
-          />
-        </>
+        <RootStack.Screen
+          name="Messenger"
+          component={DrawerSideBarStackScreen}
+        />
       ) : (
         <RootStack.Screen
-          name="Регистрация"
+          name="Registration"
           component={DrawerSideBarStackScreen}
-          options={{
-            title: "Регистрация",
-            headerLeft: () => <BurgerBtn />,
-            headerTitleStyle: {
-              color: "#3577ef",
-            },
-          }}
         />
       )}
     </RootStack.Navigator>

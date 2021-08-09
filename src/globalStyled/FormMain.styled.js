@@ -38,8 +38,11 @@ export const Ant_FormMainLabel = styled.Text`
 export const Ant_FormMainInputWrap = styled.View`
   position: relative;
 
+  width: 100%;
+
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-around;
 
   border: 1px solid #fff;
 
@@ -47,20 +50,21 @@ export const Ant_FormMainInputWrap = styled.View`
 
   background-color: #f4f5f4;
 
+  padding: 0 1%;
   margin: 2% 0;
 `;
 
 export const Ant_FormMainInput = styled.TextInput`
+  flex: 0 1 100%;
   padding-top: 1%;
   padding-bottom: 1%;
   padding-left: 1%;
 `;
 
 export const Ant_BtnInputClearWrap = styled.TouchableOpacity`
-  position: absolute;
+  width: 20px;
 
-  top: 25%;
-  right: 2%;
+  align-self: center;
 `;
 
 export const Ant_BtnInputClearImage = styled.Image`
@@ -77,7 +81,8 @@ export const Ant_BtnMainFormWrap = styled.TouchableOpacity`
 
   margin: 0 3%;
 
-  background-color: #03a9f4;
+  background-color: ${({ disabled }) => (disabled ? "grey" : "#03a9f4")};
+  /* background-color: #03a9f4; */
 
   border-radius: 5px;
 `;

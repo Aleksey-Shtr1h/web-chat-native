@@ -59,10 +59,10 @@ export const ChannelBox = () => {
     }
   }, [isPreloadMessanges, initCheckUser, initGetUsers]);
 
-  if (!usersRoom && !userId) {
+  if (isPreloadUsers) {
     return (
       <Ant_ChannelDesktopChat>
-        <Preload color={"#000000"} />
+        <Preload color={"#3577ef"} />
       </Ant_ChannelDesktopChat>
     );
   }
