@@ -118,3 +118,7 @@ export const onInputFocusStyle = {
     return { borderWidth: width, borderColor: color };
   },
 };
+
+export const checkInfoAndChangeValue = (info, changeValue) => {
+  return info ? info : changeValue;
+};

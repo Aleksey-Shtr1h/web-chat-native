@@ -45,8 +45,8 @@ export const IconBtnLink = ({
           asf="baseline"
           bdr={bdr}
           bg={bgd}
-          w={`${width}px`}
-          h={`${height}px`}
+          w={`${width + 20}px`}
+          h={`${height + 20}px`}
           onPress={() => handlePress(urlLink)}
         >
           <SvgUri

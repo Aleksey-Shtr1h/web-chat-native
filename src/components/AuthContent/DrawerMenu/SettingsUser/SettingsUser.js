@@ -41,7 +41,7 @@ export const SettingsUser = () => {
   return (
     <Ant_FlexColumnWrap m="0 5%">
       <Ant_FlexRowWrap jc="flex-start" ai="flex-start" w="100%" m="3% 0">
-        <Ant_FlexColumnWrap mr="5%">
+        <Ant_FlexColumnWrap m="0 5% 0 0">
           <Ant_IconImage
             w="100"
             h="100"

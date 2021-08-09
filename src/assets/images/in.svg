@@ -1,7 +1,7 @@
 <svg
   className="host-info__social-network-icon"
-  width="12"
-  height="12"
+  width="10"
+  height="10"
   viewBox="0 0 12 12"
   xmlns="http://www.w3.org/2000/svg"
   fill="black"

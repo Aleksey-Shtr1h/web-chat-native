@@ -4,7 +4,10 @@ import ImagePicker from "react-native-image-crop-picker";
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
 
-import { Ant_FlexRowWrap } from "../../../../globalStyled/Global.styled";
+import {
+  Ant_FlexRowWrap,
+  Ant_FlexScrolWrap,
+} from "../../../../globalStyled/Global.styled";
 import { MainBtnForm } from "../../../Solid/MainBtnForm/MainBtnForm";
 import {
   Ant_FormMain,
@@ -21,6 +24,7 @@ import { USER_UNKNOWN_PHOTO_URL } from "../../../../constant";
 import { OperationData } from "../../../../redux/data/dataReducer";
 import { InputMain } from "../../../Solid/InputMain/InputMain";
 import { InputTextAreaMain } from "../../../Solid/InputTextAreaMain/InputTextAreaMain";
+import { checkInfoAndChangeValue } from "./../../../../utils/utils";
 
 export const ChangeUserProfileInfo = () => {
   const navigation = useNavigation();
@@ -30,14 +34,22 @@ export const ChangeUserProfileInfo = () => {
   const userProfile = useSelector((state) => getUserProfile(state));
 
   const [newName, setNewName] = useState(
-    userProfile?.info?.name ? userProfile?.info?.name : ""
+    checkInfoAndChangeValue(userProfile?.info?.name, "")
   );
-  const [linkFacebook, setLinkFacebook] = useState("");
-  const [linkVk, setLinkVk] = useState("");
-  const [linkTwitter, setLinkTwitter] = useState("");
-  const [linkLinkendin, setLinkLinkendin] = useState("");
+  const [linkFacebook, setLinkFacebook] = useState(
+    checkInfoAndChangeValue(userProfile?.sosialNetworks?.facebook, "")
+  );
+  const [linkVk, setLinkVk] = useState(
+    checkInfoAndChangeValue(userProfile?.sosialNetworks?.vk, "")
+  );
+  const [linkTwitter, setLinkTwitter] = useState(
+    checkInfoAndChangeValue(userProfile?.sosialNetworks?.twitter, "")
+  );
+  const [linkLinkendin, setLinkLinkendin] = useState(
+    checkInfoAndChangeValue(userProfile?.sosialNetworks?.linkendin, "")
+  );
   const [statusDiscription, setStatusDiscription] = useState(
-    userProfile?.statusDiscription ? userProfile?.statusDiscription : ""
+    checkInfoAndChangeValue(userProfile?.statusDiscription, "")
   );
   const [selectFile, setSelectFile] = useState(null);
 
@@ -123,7 +135,12 @@ export const ChangeUserProfileInfo = () => {
   return (
     <Ant_SectionForm>
       <Ant_FormMain>
-        <ScrollView>
+        <Ant_FlexScrolWrap
+          p="0 3% 3% 3%"
+          m="7% 0"
+          brd="2px solid #ffffff"
+          brs="5px"
+        >
           <InputMain
             labelName={"Change name user"}
             keyboardType={"default"}
@@ -195,7 +212,35 @@ export const ChangeUserProfileInfo = () => {
             onBtnPress={onClearTextPress}
             onValidStateValue={onValidStateValue}
           />
-        </ScrollView>
+
+          <InputMain
+            labelName={"Twitter link"}
+            keyboardType={"default"}
+            placeholder={"Twitter"}
+            stateValue={linkTwitter}
+            setStateValue={setLinkTwitter}
+            secureTextEntry={false}
+            editable={true}
+            btnRigth={"clear"}
+            onChangeText={onChangeText}
+            onBtnPress={onClearTextPress}
+            onValidStateValue={onValidStateValue}
+          />
+
+          <InputMain
+            labelName={"Linkendin link"}
+            keyboardType={"default"}
+            placeholder={"Linkendin"}
+            stateValue={linkLinkendin}
+            setStateValue={setLinkLinkendin}
+            secureTextEntry={false}
+            editable={true}
+            btnRigth={"clear"}
+            onChangeText={onChangeText}
+            onBtnPress={onClearTextPress}
+            onValidStateValue={onValidStateValue}
+          />
+        </Ant_FlexScrolWrap>
         <Ant_FlexRowWrap>
           <MainBtnForm nameBtn={"Edit"} onPressCommand={onSubmit} />
           <MainBtnForm nameBtn={"Cancel"} onPressCommand={onCancelPress} />

@@ -21,6 +21,20 @@ const Ant_FlexWrap = styled.View`
 
   border: ${(props) => props.brd || "1px solid #ffffff00"};
 `;
+
+export const Ant_FlexScrolWrap = styled.ScrollView`
+  padding: ${(props) => props.p || "0 0 0 0"};
+  margin: ${(props) => props.m || "0 0 0 0"};
+
+  width: ${(props) => props.w || "auto"};
+  height: ${(props) => props.h || "auto"};
+
+  border-radius: ${(props) => props.brs || "0px"};
+
+  background: ${(props) => props.bg || "#ffffff00"};
+
+  border: ${(props) => props.brd || "1px solid #ffffff00"};
+`;
 const Ant_FlexWrapPress = styled.TouchableOpacity`
   display: flex;
   align-items: ${(props) => props.ai || "stretch"};

@@ -11,12 +11,12 @@ import { IconBtnLink } from "./../../../Solid/IconBtnLink/IconBtnLink";
 
 const IconSosialNerwork = {
   facebook:
-    "https://firebasestorage.googleapis.com/v0/b/web-chat-1b38f.appspot.com/o/images%2Fdefault%2Fsocial-network%2Ffb.svg?alt=media&token=7f8a2d85-5e2b-4ac7-9aae-521b60bf584e",
-  vk: "https://firebasestorage.googleapis.com/v0/b/web-chat-1b38f.appspot.com/o/images%2Fdefault%2Fsocial-network%2Fvk.svg?alt=media&token=3e99c821-7f3a-449a-b86e-0f8b749a8db9",
+    "https://firebasestorage.googleapis.com/v0/b/web-chat-1b38f.appspot.com/o/images%2Fdefault%2Fsocial-network%2Ffb.svg?alt=media&token=ca5ba032-6b7b-4649-add7-a2be79f3e799",
+  vk: "https://firebasestorage.googleapis.com/v0/b/web-chat-1b38f.appspot.com/o/images%2Fdefault%2Fsocial-network%2Fvk.svg?alt=media&token=348fce00-fb36-4006-bce9-a7f140a45ac9",
   twitter:
-    "https://firebasestorage.googleapis.com/v0/b/web-chat-1b38f.appspot.com/o/images%2Fdefault%2Fsocial-network%2Ftw.svg?alt=media&token=7ba4a9f0-3b92-45e0-90fb-e54017e0b57e",
+    "https://firebasestorage.googleapis.com/v0/b/web-chat-1b38f.appspot.com/o/images%2Fdefault%2Fsocial-network%2Ftw.svg?alt=media&token=b1c9a776-9bed-4945-9580-058f1e52c01d",
   linkendin:
-    "https://firebasestorage.googleapis.com/v0/b/web-chat-1b38f.appspot.com/o/images%2Fdefault%2Fsocial-network%2Fin.svg?alt=media&token=d31fb319-1ea9-495f-90c0-c73f74483f51",
+    "https://firebasestorage.googleapis.com/v0/b/web-chat-1b38f.appspot.com/o/images%2Fdefault%2Fsocial-network%2Fin.svg?alt=media&token=dbef5f68-3a04-4a32-ab51-4dd16f4f9398",
 };
 
 export const SoсialNetwork = () => {
